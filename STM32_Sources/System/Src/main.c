@@ -24,6 +24,8 @@
 
 int main(void)
 {
+
+	//add application code
     /* Loop forever */
 	for(;;);
 }
