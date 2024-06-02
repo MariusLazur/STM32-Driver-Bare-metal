@@ -7,6 +7,7 @@
 
 #include "types.h"
 #include "gpio_reg.h"
+#include "rcc_reg.h"
 
 
 #ifndef STM32F446RE_BASE_H_

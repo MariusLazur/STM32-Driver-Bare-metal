@@ -1,4 +1,5 @@
 "./System/Drivers/gpio/Src/gpio.o"
+"./System/Drivers/rcc/src/rcc.o"
 "./System/Src/main.o"
 "./System/Src/syscalls.o"
 "./System/Src/sysmem.o"

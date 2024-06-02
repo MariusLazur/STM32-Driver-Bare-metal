@@ -23,6 +23,7 @@ C_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 System/Drivers/gpio/Src \
+System/Drivers/rcc/src \
 System/Src \
 System/Startup \
 

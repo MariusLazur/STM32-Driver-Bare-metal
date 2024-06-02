@@ -22,7 +22,7 @@ C_DEPS += \
 
 # Each subdirectory must supply rules for building sources it contributes
 System/Src/%.o System/Src/%.su System/Src/%.cyclo: ../System/Src/%.c System/Src/subdir.mk
-	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -c -I"/Users/mariuslazur/Dev_Projects/STM32-Driver-Bare-metal/STM32_Sources/System/Inc" -I"/Users/mariuslazur/Dev_Projects/STM32-Driver-Bare-metal/STM32_Sources/System/Drivers/gpio/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -c -I"/Users/mariuslazur/Dev_Projects/STM32-Driver-Bare-metal/STM32_Sources/System/Inc" -I"/Users/mariuslazur/Dev_Projects/STM32-Driver-Bare-metal/STM32_Sources/System/Drivers/gpio/Inc" -I"/Users/mariuslazur/Dev_Projects/STM32-Driver-Bare-metal/STM32_Sources/System/Drivers/rcc/inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 
 clean: clean-System-2f-Src
 

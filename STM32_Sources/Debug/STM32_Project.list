@@ -87,6 +87,8 @@ int main(void)
 {
  8000204:	b480      	push	{r7}
  8000206:	af00      	add	r7, sp, #0
+
+	//add application code
     /* Loop forever */
 	for(;;);
  8000208:	bf00      	nop
