@@ -1,3 +1,0 @@
-../System/Drivers/gpio/Src/gpio.c:4:6:vDoConfigDirection	32	static
-../System/Drivers/gpio/Src/gpio.c:55:6:vDoSetPin	24	static
-../System/Drivers/gpio/Src/gpio.c:122:6:vDoSetSpeed	32	static

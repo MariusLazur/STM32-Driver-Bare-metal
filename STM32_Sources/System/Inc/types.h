@@ -7,9 +7,18 @@
 
 #include "std_types.h"
 
+#define ENABLE  1u
+#define DISABLE 0u
+
+#define SET     1u
+#define RESET   0u
+#define CLEAR   0u
+
 typedef volatile uint32 __IO;
 typedef volatile const uint32 __I;
 typedef volatile uint32 __O;
+
+
 
 
 /*typedef enum {

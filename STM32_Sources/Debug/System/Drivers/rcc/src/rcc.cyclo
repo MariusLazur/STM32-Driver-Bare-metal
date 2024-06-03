@@ -1,2 +1,0 @@
-../System/Drivers/rcc/src/rcc.c:4:6:vDoEnablePeriphClock_AHB	5
-../System/Drivers/rcc/src/rcc.c:23:6:vDoEnablePeriphClock_APB	3

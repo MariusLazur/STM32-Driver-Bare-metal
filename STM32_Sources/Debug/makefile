@@ -53,16 +53,23 @@ default.size.stdout \
 OBJDUMP_LIST += \
 STM32_Project.list \
 
+OBJCOPY_HEX += \
+STM32_Project.hex \
+
+OBJCOPY_SREC += \
+STM32_Project.srec \
+
 
 # All Target
-all: main-build
+all:
+	+@$(MAKE) --no-print-directory main-build && $(MAKE) --no-print-directory post-build
 
 # Main-build Target
 main-build: STM32_Project.elf secondary-outputs
 
 # Tool invocations
 STM32_Project.elf STM32_Project.map: $(OBJS) $(USER_OBJS) /Users/mariuslazur/Dev_Projects/STM32-Driver-Bare-metal/STM32_Sources/STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "STM32_Project.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/mariuslazur/Dev_Projects/STM32-Driver-Bare-metal/STM32_Sources/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_Project.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "STM32_Project.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/mariuslazur/Dev_Projects/STM32-Driver-Bare-metal/STM32_Sources/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_Project.map" -Wl,--cref -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -76,12 +83,26 @@ STM32_Project.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
+STM32_Project.hex: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O ihex $(EXECUTABLES) "STM32_Project.hex"
+	@echo 'Finished building: $@'
+	@echo ' '
+
+STM32_Project.srec: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O srec $(EXECUTABLES) "STM32_Project.srec"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 # Other Targets
 clean:
-	-$(RM) STM32_Project.elf STM32_Project.list STM32_Project.map default.size.stdout
+	-$(RM) STM32_Project.elf STM32_Project.hex STM32_Project.list STM32_Project.map STM32_Project.srec default.size.stdout
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
+post-build:
+	arm-none-eabi-objdump -d STM32_Project.elf > STM32_Project.asm
+	-@echo ' '
+
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_HEX) $(OBJCOPY_SREC)
 
 fail-specified-linker-script-missing:
 	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'
@@ -90,6 +111,6 @@ fail-specified-linker-script-missing:
 warn-no-linker-script-specified:
 	@echo 'Warning: No linker script specified. Check the linker settings in the build configuration.'
 
-.PHONY: all clean dependents main-build fail-specified-linker-script-missing warn-no-linker-script-specified
+.PHONY: all clean dependents main-build fail-specified-linker-script-missing warn-no-linker-script-specified post-build
 
 -include ../makefile.targets
