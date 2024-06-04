@@ -7,7 +7,9 @@
 
 #include "types.h"
 #include "gpio_reg.h"
+#include "pwr_reg.h"
 #include "rcc_reg.h"
+
 
 
 #ifndef STM32F446RE_BASE_H_
@@ -43,7 +45,12 @@
 #define GPIO_H_REG ((GPIO_t *)(AHB1PERIPH_BASE + GPIO_H_OFFSET))
 
 /*===========RCC REGISTERS CONFIG===============*/
-#define RCC_OFFSET (0x3800UL)
-#define RCC        ((RCC_t *) (AHB1PERIPH_BASE + RCC_OFFSET))
+#define RCC_OFFSET 			(0x3800UL)
+#define RCC        			((RCC_t *) (AHB1PERIPH_BASE + RCC_OFFSET))
+
+
+/*===========PWR REGISTERS CONFIG===============*/
+#define PWR_OFFSET          (0x7000UL)
+//#define PWR                 ((PWR_ta *) (APB1PERIPH_BASE + PWR_BASE))
 
 #endif /* STM32F446RE_BASE_H_ */

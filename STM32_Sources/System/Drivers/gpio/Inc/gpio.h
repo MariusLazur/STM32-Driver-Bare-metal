@@ -16,7 +16,6 @@ typedef enum {
     GPIO_PORT_F = 5,  /*!< Port F */
     GPIO_PORT_G = 6,  /*!< Port G */
     GPIO_PORT_H = 7   /*!< Port H */
-
 } gpio_port_t;
 
 typedef enum

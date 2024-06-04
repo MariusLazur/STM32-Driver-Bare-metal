@@ -12,6 +12,7 @@ RM := rm -rf
 -include System/Startup/subdir.mk
 -include System/Src/subdir.mk
 -include System/Drivers/rcc/src/subdir.mk
+-include System/Drivers/pwr/src/subdir.mk
 -include System/Drivers/gpio/Src/subdir.mk
 -include objects.mk
 

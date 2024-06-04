@@ -17,6 +17,9 @@
  */
 
 #include <stdint.h>
+#include "STM32F446RE_Base.h"
+#include "gpio.h"
+#include "rcc.h"
 
 #if !defined(__SOFT_FP__) && defined(__ARM_FP)
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
@@ -24,8 +27,25 @@
 
 int main(void)
 {
+	vDo_AHB1ENR_EnableClockAccessToPort(GPIO_PORT_A);
+
+	vDoConfigDirection(GPIO_PORT_A,PIN_1,OUTPUT);
+
+	while(1){
+
+		vDoSetPin(GPIO_PORT_A,PIN_1,SET);
+		for(uint32 i; i<100000;i++){}
+		vDoSetPin(GPIO_PORT_A,PIN_1,RESET);
+	}
+
+
+
+
+
+
+
 
 	//add application code
     /* Loop forever */
-	for(;;);
+	//for(;;);
 }
