@@ -22,30 +22,29 @@
 #include "rcc.h"
 
 #if !defined(__SOFT_FP__) && defined(__ARM_FP)
-  #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
+  //#warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
 #endif
 
-int main(void)
-{
+void main(void){
+	uint32 i = 0;
 	vDo_AHB1ENR_EnableClockAccessToPort(GPIO_PORT_A);
-
-	vDoConfigDirection(GPIO_PORT_A,PIN_1,OUTPUT);
+    gpio_config_t cfg_reg;
+    cfg_reg.direction = OUTPUT;
+	vDoConfigDirection(GPIO_PORT_A, PIN_1, cfg_reg);
 
 	while(1){
 
 		vDoSetPin(GPIO_PORT_A,PIN_1,SET);
-		for(uint32 i; i<100000;i++){}
+
+		for(i=0; i<=100000;i++){
+
+			if (i==10000000)
+			{
+				i=0;
+			}
+		}
 		vDoSetPin(GPIO_PORT_A,PIN_1,RESET);
 	}
 
-
-
-
-
-
-
-
-	//add application code
-    /* Loop forever */
-	//for(;;);
 }
+

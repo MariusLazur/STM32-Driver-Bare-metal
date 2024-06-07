@@ -86,6 +86,9 @@ typedef struct {
     gpio_lck_reg_t lock;
 }gpio_config_t;
 
+void vDoConfigDirection(gpio_port_t port,gpio_pins_t pin,gpio_config_t config);
+void vDoSetPin(gpio_port_t port, gpio_pins_t pin, uint8 pin_lvl);
+
 #endif //STM32_PROJECT_GPIO_H
 
 
