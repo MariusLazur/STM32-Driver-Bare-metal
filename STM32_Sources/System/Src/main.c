@@ -18,33 +18,68 @@
 
 #include <stdint.h>
 #include "STM32F446RE_Base.h"
-#include "gpio.h"
-#include "rcc.h"
+//#include "gpio.h"
+//#include "rcc.h"
+#include "uart.h"
+#include "timer.h"
 
 #if !defined(__SOFT_FP__) && defined(__ARM_FP)
   //#warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
 #endif
 
-void main(void){
-	uint32 i = 0;
-	vDo_AHB1ENR_EnableClockAccessToPort(GPIO_PORT_A);
-    gpio_config_t cfg_reg;
-    cfg_reg.direction = OUTPUT;
-	vDoConfigDirection(GPIO_PORT_A, PIN_1, cfg_reg);
 
-	while(1){
 
-		vDoSetPin(GPIO_PORT_A,PIN_1,SET);
 
-		for(i=0; i<=100000;i++){
+uint32 saveCaptureTime = 0;
 
-			if (i==10000000)
-			{
-				i=0;
-			}
-		}
-		vDoSetPin(GPIO_PORT_A,PIN_1,RESET);
-	}
+int main(void){
 
+
+    StartTimer_OutputCompare(TIM_2,TIMER_TICK_US_1HZ(ONE_SECOND));
+
+    StartTimer_InputCapture(TIM_3,TIMER_TICK_US_1HZ(ONE_SECOND));
+
+    while(1){
+
+    	while (!(TIM_3->SR & SR_CC1IF)){
+
+    		//read captured value
+    		saveCaptureTime = TIM_3->CCR1;
+
+    	}
+
+    	saveCaptureTime = 0;
+    }
+
+    return 0;
 }
+//uint8 key;
 
+/*int main(void){
+
+	gpio_config_t x;
+	x.direction = OUTPUT;
+
+	vDoConfigDirection(GPIO_PORT_A,PIN_5,x);
+
+    vDoUSARTx_cfg();
+
+    StartTimer(TIM_2,TIMER_TICK_US_1HZ(ONE_SECOND));
+
+    //StartTimer_OutputCompare(TIM_2,TIMER_TICK_US_1HZ(ONE_SECOND));;
+
+    while(1){
+    	while(!(TIM_2->SR & SR_UIF)){
+
+    	}
+
+    	TIM_2->SR &=~SR_UIF;
+        vDoWriteUSART_data(0x21);
+
+
+       // key = vDoReadUSART_data();
+
+    }
+
+    return 0;
+}*/

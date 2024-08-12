@@ -249,8 +249,8 @@
 #define RCC_APB1ENR_SPDIFRX_EN_Msk             (0x1UL << RCC_APB1ENR_SPDIFRX_EN_Pos)
 
 #define RCC_APB1ENR_USART_EN_Pos                17UL
-#define RCC_APB1ENR_USART_2_EN_Msk             (0x1UL << RCC_APB1ENR_USART_EN_Pos)
-#define RCC_APB1ENR_USART_3_EN_Msk             (0x2UL << RCC_APB1ENR_USART_EN_Pos)
+#define RCC_APB1ENR_USART_2_EN_Msk             (uint32)(0x1UL << RCC_APB1ENR_USART_EN_Pos)
+#define RCC_APB1ENR_USART_3_EN_Msk             (uint32)(0x2UL << RCC_APB1ENR_USART_EN_Pos)
 
 #define RCC_APB1ENR_UART_EN_Pos                 18UL
 #define RCC_APB1ENR_UART_3_EN_Msk              (0x1UL << RCC_APB1ENR_UART_EN_Pos)
@@ -281,11 +281,37 @@
 #define RCC_APB1ENR_DAC_EN_Msk                 (0x1UL << RCC_APB1ENR_DAC_EN_Pos)
 
 /*APB2ENR register*/
-#define RCC_APB2ENR_TIM_1_EN_Pos 0UL
-#define RCC_APB2ENR_TIM_1_EN_Msk               (0x1UL << RCC_APB2ENR_TIM_X_EN_Pos)
+#define RCC_APB1ENR_TIM2EN_Pos             (0U)
+#define RCC_APB1ENR_TIM2EN_Msk             (0x1UL << RCC_APB1ENR_TIM2EN_Pos)    /*!< 0x00000001 */
+#define RCC_APB1ENR_TIM2EN                 RCC_APB1ENR_TIM2EN_Msk
 
-#define RCC_APB2ENR_TIM_8_EN_Pos 1UL
-#define RCC_APB2ENR_TIM_8_EN_Msk               (0x1UL << RCC_APB2ENR_TIM_X_EN_Pos)
+#define RCC_APB1ENR_TIM3EN_Pos             (1U)
+#define RCC_APB1ENR_TIM3EN_Msk             (0x1UL << RCC_APB1ENR_TIM3EN_Pos)    /*!< 0x00000002 */
+#define RCC_APB1ENR_TIM3EN                 RCC_APB1ENR_TIM3EN_Msk
+
+#define RCC_APB1ENR_TIM4EN_Pos             (2U)
+#define RCC_APB1ENR_TIM4EN_Msk             (0x1UL << RCC_APB1ENR_TIM4EN_Pos)    /*!< 0x00000004 */
+#define RCC_APB1ENR_TIM4EN                 RCC_APB1ENR_TIM4EN_Msk
+
+#define RCC_APB1ENR_TIM5EN_Pos             (3U)
+#define RCC_APB1ENR_TIM5EN_Msk             (0x1UL << RCC_APB1ENR_TIM5EN_Pos)    /*!< 0x00000008 */
+#define RCC_APB1ENR_TIM5EN                 RCC_APB1ENR_TIM5EN_Msk
+
+#define RCC_APB1ENR_TIM6EN_Pos             (4U)
+#define RCC_APB1ENR_TIM6EN_Msk             (0x1UL << RCC_APB1ENR_TIM6EN_Pos)    /*!< 0x00000010 */
+#define RCC_APB1ENR_TIM6EN                 RCC_APB1ENR_TIM6EN_Msk
+#define RCC_APB1ENR_TIM7EN_Pos             (5U)
+#define RCC_APB1ENR_TIM7EN_Msk             (0x1UL << RCC_APB1ENR_TIM7EN_Pos)    /*!< 0x00000020 */
+#define RCC_APB1ENR_TIM7EN                 RCC_APB1ENR_TIM7EN_Msk
+#define RCC_APB1ENR_TIM12EN_Pos            (6U)
+#define RCC_APB1ENR_TIM12EN_Msk            (0x1UL << RCC_APB1ENR_TIM12EN_Pos)   /*!< 0x00000040 */
+#define RCC_APB1ENR_TIM12EN                RCC_APB1ENR_TIM12EN_Msk
+#define RCC_APB1ENR_TIM13EN_Pos            (7U)
+#define RCC_APB1ENR_TIM13EN_Msk            (0x1UL << RCC_APB1ENR_TIM13EN_Pos)   /*!< 0x00000080 */
+#define RCC_APB1ENR_TIM13EN                RCC_APB1ENR_TIM13EN_Msk
+#define RCC_APB1ENR_TIM14EN_Pos            (8U)
+#define RCC_APB1ENR_TIM14EN_Msk            (0x1UL << RCC_APB1ENR_TIM14EN_Pos)   /*!< 0x00000100 */
+#define RCC_APB1ENR_TIM14EN                RCC_APB1ENR_TIM14EN_Msk
 
 #define RCC_APB2ENR_USART_1_EN_Pos 4UL
 #define RCC_APB2ENR_USART_1_EN_Msk           (0x1UL << RCC_APB2ENR_USART_1_EN_Pos)
@@ -341,6 +367,9 @@ typedef struct {
 } rcc_config;
 
 
-void vDo_AHB1ENR_EnableClockAccessToPort(gpio_port_t port);
-void vDo_AHB1ENR_DisableClockAccessToPort(gpio_port_t port);
+void vDo_AHB1ENR_EnableClockAccessToGPIO(gpio_port_t port);
+void vDo_AHB1ENR_DisableClockAccessToGPIO(gpio_port_t port);
+
+void vDo_APB1ENR_EnableClockAccessToUSART(uint32 usart_select);
+void vDo_APB1ENR_DisableClockAccessToUSART(uint32 usart_select);
 

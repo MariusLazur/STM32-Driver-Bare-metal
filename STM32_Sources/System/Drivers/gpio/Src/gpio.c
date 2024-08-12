@@ -169,3 +169,56 @@ void vDoSetSpeed(gpio_port_t port, gpio_pins_t pin, gpio_config_t config){
             break;
     }
 }
+
+void vDoSetGPIOAltFunc(gpio_port_t port,gpio_pins_t pin, gpio_AFR_select_t af_select,gpio_AFR_HI_LO_t af_type)
+{
+
+	uint32 position = pin * 4u;
+
+	    switch(port)
+	    {
+	        case GPIO_PORT_A:{
+	            GPIO_A_REG->GPIOx_AFR[af_type] &= ~(0x0Fu << position);
+	            GPIO_A_REG->GPIOx_AFR[af_type] |= af_select << position;
+	            break;
+	        }
+	        case GPIO_PORT_B:{
+	            GPIO_B_REG->GPIOx_AFR[af_type] &= ~(0x0Fu << position);
+	            GPIO_B_REG->GPIOx_AFR[af_type] |= af_select << position;
+	            break;
+	        }
+	        case GPIO_PORT_C:{
+	            GPIO_C_REG->GPIOx_AFR[af_type] &= ~(0x0Fu << position);
+	            GPIO_C_REG->GPIOx_AFR[af_type] |= af_select << position;
+	            break;
+	        }
+	        case GPIO_PORT_D:{
+	            GPIO_D_REG->GPIOx_AFR[af_type] &= ~(0x0Fu << position);
+	            GPIO_D_REG->GPIOx_AFR[af_type] |= af_select << position;
+	            break;
+	        }
+	        case GPIO_PORT_E:{
+	            GPIO_E_REG->GPIOx_AFR[af_type] &= ~(0x0Fu << position);
+	            GPIO_E_REG->GPIOx_AFR[af_type] |= af_select << position;
+	            break;
+	        }
+	        case GPIO_PORT_F:{
+	            GPIO_F_REG->GPIOx_AFR[af_type] &= ~(0x0Fu << position);
+	            GPIO_F_REG->GPIOx_AFR[af_type] |= af_select << position;
+	            break;
+	        }
+	        case GPIO_PORT_G:{
+	            GPIO_G_REG->GPIOx_AFR[af_type] &= ~(0x0Fu << position);
+	            GPIO_G_REG->GPIOx_AFR[af_type] |= (af_select << position);
+	            break;
+	        }
+	        case GPIO_PORT_H:{
+	            GPIO_H_REG->GPIOx_AFR[af_type] &= ~(0x0Fu << position);
+	            GPIO_H_REG->GPIOx_AFR[af_type] |= af_select << position;
+	            break;
+	        }
+	        default:
+	            break;
+	    }
+}
+

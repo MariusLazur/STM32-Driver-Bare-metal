@@ -20,7 +20,8 @@ typedef enum {
 
 typedef enum
 {
-    PIN_1 = 0,
+	PIN_0 = 0,
+    PIN_1,
     PIN_2,
     PIN_3,
     PIN_4,
@@ -77,6 +78,33 @@ typedef enum {
 }gpio_lck_reg_t;
 
 
+typedef enum {
+    AF_0 = 0,
+	AF_1,
+	AF_2,
+	AF_3,
+	AF_4,
+	AF_5,
+	AF_6,
+	AF_7,
+	AF_8,
+	AF_9,
+	AF_10,
+	AF_11,
+	AF_12,
+	AF_13,
+	AF_14,
+	AF_15,
+
+}gpio_AFR_select_t;
+
+typedef enum{
+	AF_LOW,
+	AF_HIGH
+}gpio_AFR_HI_LO_t;
+
+
+
 typedef struct {
     gpio_mode_reg_t direction;
     gpio_otype_reg_t output_type;
@@ -88,6 +116,8 @@ typedef struct {
 
 void vDoConfigDirection(gpio_port_t port,gpio_pins_t pin,gpio_config_t config);
 void vDoSetPin(gpio_port_t port, gpio_pins_t pin, uint8 pin_lvl);
+void vDoSetGPIOAltFunc(gpio_port_t port,gpio_pins_t pin, gpio_AFR_select_t af_select,gpio_AFR_HI_LO_t af_type);
+
 
 #endif //STM32_PROJECT_GPIO_H
 
