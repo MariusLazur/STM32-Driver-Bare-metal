@@ -53,3 +53,10 @@ void vDoWriteUSART_data(uint8 data){
     USART_2->DR = (data & 0xFF);
 }
 
+int __IO_putchar(int ch)
+{
+	vDoWriteUSART_data(ch);
+
+	return ch;
+}
+

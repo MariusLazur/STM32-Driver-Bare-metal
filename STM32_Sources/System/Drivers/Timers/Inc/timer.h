@@ -40,6 +40,7 @@ TIM_2->SR &=~SR_UIF;*/
 void StartTimer(TIM_t * timerX,uint32 tick, uint32 prescaler);
 void StartTimer_OutputCompare(TIM_t * timerX,uint32 tick, uint32 prescaler);
 void StartTimer_InputCapture(TIM_t * timerX,uint32 tick, uint32 prescaler);
+void StartTimer_IRQ(TIM_t * timerX,uint32 tick, uint32 prescaler);
 
 
 #endif /* SYSTEM_DRIVERS_TIMERS_INC_TIMER_H_ */

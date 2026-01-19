@@ -40,7 +40,24 @@ void vDo_APB1ENR_DisableClockAccessToUSART(uint32 usart_select) {
         RCC->APB1ENR &= ~usart_select;
     }
 }
-//RCC_t u32GetRCC_AHB1ENR_Status(RCC_t *RCC_reg) {
- //   return RCC_reg->AHB1ENR;
-//}
 
+void vDo_APB1ENR_EnableClockAccessToDMA(uint32 DMA_select) {
+
+    if ((RCC->AHB1ENR & DMA_select) != SET) {
+        RCC->AHB1ENR |= DMA_select;
+    }
+}
+
+void vDo_APB1ENR_DisableClockAccessToDMA(uint32 DMA_select) {
+
+    if ((RCC->AHB1ENR & DMA_select) == SET) {
+        RCC->AHB1ENR &= ~DMA_select;
+    }
+}
+
+void vDo_APB2ENR_DisableClockAccessToSYSCFG(uint32 enClockSYScfg) {
+
+    if ((RCC->APB2ENR & enClockSYScfg) == SET) {
+        RCC->APB2ENR &= ~enClockSYScfg;
+    }
+}

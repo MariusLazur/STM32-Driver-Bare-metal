@@ -17,69 +17,69 @@
  */
 
 #include <stdint.h>
+#include <stdio.h>
 #include "STM32F446RE_Base.h"
 //#include "gpio.h"
 //#include "rcc.h"
 #include "uart.h"
 #include "timer.h"
+#include "irq.h"
 
 #if !defined(__SOFT_FP__) && defined(__ARM_FP)
   //#warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
 #endif
 
+#define SR_UIF 1<<0
 
-
-
-uint32 saveCaptureTime = 0;
+static void exit_handler(void);
+static void tim2_exitHandler(void);
 
 int main(void){
 
-
-    StartTimer_OutputCompare(TIM_2,TIMER_TICK_US_1HZ(ONE_SECOND));
-
-    StartTimer_InputCapture(TIM_3,TIMER_TICK_US_1HZ(ONE_SECOND));
-
-    while(1){
-
-    	while (!(TIM_3->SR & SR_CC1IF)){
-
-    		//read captured value
-    		saveCaptureTime = TIM_3->CCR1;
-
-    	}
-
-    	saveCaptureTime = 0;
-    }
-
-    return 0;
-}
-//uint8 key;
-
-/*int main(void){
+	vDo_AHB1ENR_EnableClockAccessToGPIO(GPIO_PORT_A);
 
 	gpio_config_t x;
 	x.direction = OUTPUT;
 
 	vDoConfigDirection(GPIO_PORT_A,PIN_5,x);
 
-    vDoUSARTx_cfg();
-
-    StartTimer(TIM_2,TIMER_TICK_US_1HZ(ONE_SECOND));
-
-    //StartTimer_OutputCompare(TIM_2,TIMER_TICK_US_1HZ(ONE_SECOND));;
+	//PC13_exti_init();
+	StartTimer_IRQ(TIM_2,TIMER_TICK_US_1HZ(ONE_SECOND));
+	vDoUSARTx_cfg();
 
     while(1){
-    	while(!(TIM_2->SR & SR_UIF)){
-
-    	}
-
-    	TIM_2->SR &=~SR_UIF;
-        vDoWriteUSART_data(0x21);
-
-
-       // key = vDoReadUSART_data();
 
     }
 
     return 0;
-}*/
+}
+
+static void exit_handler(void){
+
+	printf("BNT pressed...\n\r");
+}
+
+
+static void tim2_exitHandler(void){
+	printf("BNT pressed...\n\r");
+
+	GPIO_A_REG->GPIOx_ODR ^= (1<<5);
+}
+
+
+void TIM2_IRQHandler(void)
+{
+	TIM_2->SR &= ~SR_UIF;
+	tim2_exitHandler();
+}
+
+void EXTI15_10_IRQHandler(void){
+
+	if((EXTI->PR & (1<<13)) != 0){
+
+		EXTI->PR |=(1<<13);
+
+		exit_handler();
+	}
+
+}

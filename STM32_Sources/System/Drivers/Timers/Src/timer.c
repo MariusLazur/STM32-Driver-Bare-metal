@@ -1,6 +1,7 @@
 #include "timer.h"
 #include "rcc.h"
 #include "gpio.h"
+#include "irq.h"
 
 
 
@@ -23,6 +24,29 @@ void StartTimer(TIM_t * timerX,uint32 tick, uint32 prescaler)
 
 	 //enable TIMER
 	 timerX->CR1 = TIM_CR1_CEN;
+}
+
+void StartTimer_IRQ(TIM_t * timerX,uint32 tick, uint32 prescaler)
+{
+	//enable clock for TIM reg
+	 RCC->APB1ENR |= RCC_APB1ENR_TIM_2_EN_Msk;
+
+	 //set prescaler
+	 timerX->PSC = prescaler - 1u;
+
+	 //set auto-reloadH
+	 timerX->ARR = tick;
+
+	 //clear counter
+	 timerX->CNT = 0;
+
+	 //enable TIMER
+	 timerX->CR1 = TIM_CR1_CEN;
+
+	 //en irq
+	 timerX->DIER = 1<<0;
+
+	 NVIC_EnableIRQ(TIM2_IRQn);
 }
 
 

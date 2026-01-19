@@ -1,0 +1,41 @@
+{
+    "version": 6,
+    "configurePresets": [
+        {
+            "name": "arm-debug",
+            "displayName": "ARM Debug",
+            "description": "Debug build for STM32F446RE",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/Debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            },
+            "toolchainFile": "${sourceDir}/cmake/arm-none-eabi-gcc.cmake"
+        },
+        {
+            "name": "arm-release",
+            "displayName": "ARM Release",
+            "description": "Release build for STM32F446RE",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/Release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            },
+            "toolchainFile": "${sourceDir}/cmake/arm-none-eabi-gcc.cmake"
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "debug",
+            "displayName": "Build Debug",
+            "configurePreset": "arm-debug"
+        },
+        {
+            "name": "release",
+            "displayName": "Build Release",
+            "configurePreset": "arm-release"
+        }
+    ]
+}

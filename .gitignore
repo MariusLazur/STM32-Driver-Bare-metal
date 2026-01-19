@@ -1,33 +1,69 @@
-gut/STM32_Sources/Debug/System/Drivers/gpio/Src/gpio.cyclo
-/STM32_Sources/Debug/System/Drivers/gpio/Src/gpio.d
-/STM32_Sources/Debug/System/Drivers/gpio/Src/gpio.o
-/STM32_Sources/Debug/System/Drivers/gpio/Src/gpio.su
-/STM32_Sources/Debug/System/Src/main.cyclo
-/STM32_Sources/Debug/System/Src/main.d
-/STM32_Sources/Debug/System/Src/main.o
-/STM32_Sources/Debug/System/Src/main.su
-/STM32_Sources/Debug/System/Drivers/pwr/src/pwr.cyclo
-/STM32_Sources/Debug/System/Drivers/pwr/src/pwr.d
-/STM32_Sources/Debug/System/Drivers/pwr/src/pwr.o
-/STM32_Sources/Debug/System/Drivers/pwr/src/pwr.su
-/STM32_Sources/Debug/System/Drivers/rcc/src/rcc.cyclo
-/STM32_Sources/Debug/System/Drivers/rcc/src/rcc.d
-/STM32_Sources/Debug/System/Drivers/rcc/src/rcc.o
-/STM32_Sources/Debug/System/Drivers/rcc/src/rcc.su
-/STM32_Sources/Debug/System/Startup/startup_stm32f446retx.d
-/STM32_Sources/Debug/System/Startup/startup_stm32f446retx.o
-/STM32_Sources/STM32_Project Debug.cfg
-/STM32_Sources/STM32_Project Debug.launch
-/STM32_Sources/Debug/System/Drivers/gpio/Src/subdir.mk
-/STM32_Sources/Debug/System/Drivers/pwr/src/subdir.mk
-/STM32_Sources/Debug/System/Drivers/rcc/src/subdir.mk
-/STM32_Sources/Debug/System/Src/subdir.mk
-/STM32_Sources/Debug/System/Startup/subdir.mk
-/STM32_Sources/Debug/System/Src/syscalls.cyclo
-/STM32_Sources/Debug/System/Src/syscalls.d
-/STM32_Sources/Debug/System/Src/syscalls.o
-/STM32_Sources/Debug/System/Src/syscalls.su
-/STM32_Sources/Debug/System/Src/sysmem.cyclo
-/STM32_Sources/Debug/System/Src/sysmem.d
-/STM32_Sources/Debug/System/Src/sysmem.o
-/STM32_Sources/Debug/System/Src/sysmem.su
+# Build artifacts
+Debug/
+Release/
+build/
+cmake-build-*/
+build_history/
+*.o
+*.d
+*.obj
+*.a
+*.so
+*.elf
+*.hex
+*.bin
+*.map
+*.list
+*.asm
+*.srec
+*.cyclo
+*.su
+
+# IDE - JetBrains (CLion/IntelliJ)
+.idea/
+*.iml
+
+# IDE - Eclipse/STM32CubeIDE
+.settings/
+.cproject
+.project
+*.launch
+*Debug*.cfg
+
+# IDE - VS Code
+.vscode/
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+.ninja_*
+compile_commands.json
+
+# Make
+subdir.mk
+sources.mk
+objects.mk
+objects.list
+
+# Debugger
+.gdbinit
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+*.swp
+*.swo
+
+# Backup files
+*.bak
+*.backup
