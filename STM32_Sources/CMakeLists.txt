@@ -46,7 +46,7 @@ file(GLOB_RECURSE SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/pwr/Src/*.c
     ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/uart/Src/*.c
     ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/Timers/Src/*.c
-    # ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/dma/Src/*.c  # Excluded: has compilation errors, needs fixing
+    ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/dma/Src/*.c
     ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/irq/Src/*.c
 )
 
