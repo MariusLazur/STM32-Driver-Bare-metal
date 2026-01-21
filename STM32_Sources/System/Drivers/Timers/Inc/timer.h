@@ -13,17 +13,21 @@ TIM_2->SR &=~SR_UIF;*/
 #define SR_CC1IF (1<<1)
 
 
-//1sec = 1000ms
-#define DIVIDER_16MHZ    0UL
-#define DIVIDER_1HZ   (16000 - 1)
-#define DIVIDER_0_5HZ   (800 - 1)
+// Timer configuration macros for 16MHz system clock
+// PSC divides clock, ARR sets period: Period = (PSC+1) * (ARR+1) / 16MHz
 
-#define TICK_16MHZ(X)   (uint32)((((X)*(16000000UL))/1000000UL)-1)
-#define TICK_1HZ(X)   (uint32)((((X)*(1UL))/1000000UL)-1)
+// Prescaler values (actual divider = value + 1)
+#define PSC_1MHZ    (16 - 1)      // 16MHz / 16 = 1MHz (1us per tick)
+#define PSC_1KHZ    (16000 - 1)   // 16MHz / 16000 = 1kHz (1ms per tick)
 
-#define TIMER_TICK_US_16MHZ(x)		TICK_16MHZ(x), DIVIDER_16MHZ
-#define TIMER_TICK_US_1HZ(x)		TICK_16MHZ(x), DIVIDER_1HZ
-#define TIMER_TICK_US_0_5HZ(x)		TICK_16MHZ(x), DIVIDER_0_5HZ
+// ARR values for common periods (with 1kHz counter = 1ms ticks)
+#define ARR_1SEC    (1000 - 1)    // 1000 ticks = 1 second
+#define ARR_500MS   (500 - 1)     // 500 ticks = 0.5 second
+#define ARR_100MS   (100 - 1)     // 100 ticks = 0.1 second
+
+// Macros: TIMER_MS(period_ms) gives (ARR, PSC) for millisecond periods
+#define TIMER_MS(ms)    ((ms) - 1), PSC_1KHZ
+#define TIMER_SEC(sec)  ((sec) * 1000 - 1), PSC_1KHZ
 
 /*******************  Bit definition for TIM_CR1 register  ********************/
 #define TIM_CR1_CEN_Pos           (0U)
@@ -35,8 +39,6 @@ TIM_2->SR &=~SR_UIF;*/
 #define  TMR_GET_VALUE32(reg)                              (((reg) >> 0u) & 0xFFFFFFFFu)
 #define  TMR_GET_VALUE16(reg)                              (((reg) >> 0u) & 0xFFFFu)
 
-
-#define ONE_SECOND 1000000UL
 void StartTimer(TIM_t * timerX,uint32 tick, uint32 prescaler);
 void StartTimer_OutputCompare(TIM_t * timerX,uint32 tick, uint32 prescaler);
 void StartTimer_InputCapture(TIM_t * timerX,uint32 tick, uint32 prescaler);

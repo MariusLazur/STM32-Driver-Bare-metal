@@ -13,10 +13,10 @@ void StartTimer(TIM_t * timerX,uint32 tick, uint32 prescaler)
 	//enable clock for TIM reg
 	 RCC->APB1ENR |= RCC_APB1ENR_TIM_2_EN_Msk;
 
-	 //set prescaler
-	 timerX->PSC = prescaler - 1u;
+	 //set prescaler (macros already include -1)
+	 timerX->PSC = prescaler;
 
-	 //set auto-reloadH
+	 //set auto-reload (macros already include -1)
 	 timerX->ARR = tick;
 
 	 //clear counter
@@ -31,10 +31,10 @@ void StartTimer_IRQ(TIM_t * timerX,uint32 tick, uint32 prescaler)
 	//enable clock for TIM reg
 	 RCC->APB1ENR |= RCC_APB1ENR_TIM_2_EN_Msk;
 
-	 //set prescaler
-	 timerX->PSC = prescaler - 1u;
+	 //set prescaler (macros already include -1)
+	 timerX->PSC = prescaler;
 
-	 //set auto-reloadH
+	 //set auto-reload (macros already include -1)
 	 timerX->ARR = tick;
 
 	 //clear counter
@@ -64,10 +64,10 @@ void StartTimer_OutputCompare(TIM_t * timerX,uint32 tick, uint32 prescaler)
 
 	 RCC->APB1ENR |= RCC_APB1ENR_TIM_2_EN_Msk;
 
-	 //set prescaler
-	 timerX->PSC = prescaler - 1u;
+	 //set prescaler (macros already include -1)
+	 timerX->PSC = prescaler;
 
-	 //set auto-reloadH
+	 //set auto-reload (macros already include -1)
 	 timerX->ARR = tick;
 
 	 //set ouput compare toggle mode
@@ -96,8 +96,8 @@ void StartTimer_InputCapture(TIM_t * timerX,uint32 tick, uint32 prescaler)
 
 	 RCC->APB1ENR |= RCC_APB1ENR_TIM_3_EN_Msk;
 
-	 //set prescaler
-	 timerX->PSC = prescaler - 1u;
+	 //set prescaler (macros already include -1)
+	 timerX->PSC = prescaler;
 
 	 //set auto-reloadH
 	 //timerX->ARR = tick;
