@@ -21,7 +21,7 @@ void PC13_exti_init(){
 	vDoConfigDirection(GPIO_PORT_C,PIN_13,cfgGPIO);
 
 	//enable clock access for syscfg
-	vDo_APB2ENR_DisableClockAccessToSYSCFG(RCC_APB2ENR_SYSCFG_EN_Msk);
+	vDo_APB2ENR_EnableClockAccessToSYSCFG(RCC_APB2ENR_SYSCFG_EN_Msk);
 
 	//select PORTC as EXTI
 	SYSCFG->EXTICR[3] = SET_EXTI13;
