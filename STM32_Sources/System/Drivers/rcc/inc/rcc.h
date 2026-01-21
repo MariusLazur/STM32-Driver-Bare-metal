@@ -374,6 +374,7 @@ void vDo_APB1ENR_EnableClockAccessToUSART(uint32 usart_select);
 void vDo_APB1ENR_DisableClockAccessToUSART(uint32 usart_select);
 
 void vDo_APB2ENR_DisableClockAccessToSYSCFG(uint32 enClockSYScfg);
+void vDo_APB2ENR_EnableClockAccessToSYSCFG(uint32 enClockSYScfg);
 
 void vDo_APB1ENR_EnableClockAccessToDMA(uint32 DMA_select);
 void vDo_APB1ENR_DisableClockAccessToDMA(uint32 DMA_select);

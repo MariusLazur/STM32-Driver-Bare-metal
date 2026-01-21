@@ -61,3 +61,7 @@ void vDo_APB2ENR_DisableClockAccessToSYSCFG(uint32 enClockSYScfg) {
         RCC->APB2ENR &= ~enClockSYScfg;
     }
 }
+
+void vDo_APB2ENR_EnableClockAccessToSYSCFG(uint32 enClockSYScfg) {
+    RCC->APB2ENR |= enClockSYScfg;
+}
