@@ -17,8 +17,7 @@
 #include "uart_reg.h"
 #include "timer_reg.h"
 #include "dma_reg.h"
-
-
+#include "spi_reg.h"
 
 #define SYS_FREQ 16000000UL
 #define APB1_CLK SYS_FREQ
@@ -31,6 +30,23 @@
 #define AHB2PERIPH_BASE 0x50000000UL
 #define AHB3PERIPH_BASE 0x60000000UL
 
+
+/*===========SPI1===============*/
+#define SPI1_OFFSET (0x3000UL)
+#define SPI1_BASE         (APB2PERIPH_BASE + SPI1_OFFSET)
+#define SPI1              ((SPI_t *) SPI1_BASE)
+/*===========SPI2===============*/
+#define SPI2_OFFSET (0x3800UL)
+#define SPI2_BASE         (APB1PERIPH_BASE + SPI2_OFFSET)
+#define SPI2              ((SPI_t *) SPI2_BASE)
+/*===========SPI1===============*/
+#define SPI3_OFFSET (0x3C00UL)
+#define SPI3_BASE         (APB1PERIPH_BASE + SPI3_OFFSET)
+#define SPI3              ((SPI_t *) SPI3_BASE)
+/*===========SPI1===============*/
+#define SPI4_OFFSET (0x3400UL)
+#define SPI4_BASE         (APB2PERIPH_BASE + SPI1_OFFSET)
+#define SPI4              ((SPI_t *) SPI4_BASE)
 /*===========SYSCFG REGISTERS CONFIG===============*/
 #define SYSCFG_OFFSET (0x3800UL)
 #define SYSCFG_BASE         (APB2PERIPH_BASE + SYSCFG_OFFSET)

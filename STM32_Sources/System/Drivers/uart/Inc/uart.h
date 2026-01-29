@@ -19,3 +19,4 @@ void vSetUSART_bd(USART_t *USARTX,uint32 Periphclk, uint32 BaudRate);
 
 uint8 vDoReadUSART_data();
 void vDoWriteUSART_data(uint8 data);
+void uart_send_buffer_blocking(uint8 *data, uint32 length);

@@ -65,3 +65,15 @@ void vDo_APB2ENR_DisableClockAccessToSYSCFG(uint32 enClockSYScfg) {
 void vDo_APB2ENR_EnableClockAccessToSYSCFG(uint32 enClockSYScfg) {
     RCC->APB2ENR |= enClockSYScfg;
 }
+
+
+void vDo_APB2ENR_DisableClockAccessToSPI1(uint32 enClockSPI1cfg) {
+
+    if ((RCC->APB2ENR & enClockSPI1cfg) == SET) {
+        RCC->APB2ENR &= ~enClockSPI1cfg;
+    }
+}
+
+void vDo_APB2ENR_EnableClockAccessToSPI1(uint32 enClockSPI1cfg) {
+    RCC->APB2ENR |= enClockSPI1cfg;
+}

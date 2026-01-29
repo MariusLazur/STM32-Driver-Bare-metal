@@ -14,7 +14,7 @@
 #define STD_TYPES_H_
 
 /* Boolean Data Type */
-typedef unsigned char bool;
+//typedef unsigned char bool;
 
 /* Boolean Values */
 #ifndef FALSE

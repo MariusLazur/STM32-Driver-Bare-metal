@@ -161,8 +161,8 @@ void vDoSetSpeed(gpio_port_t port, gpio_pins_t pin, gpio_config_t config){
             break;
         }
         case GPIO_PORT_H:{
-            GPIO_H_REG->GPIOx_MODER &= ~(0x3u << position);
-            GPIO_H_REG->GPIOx_MODER |= config.output_speed << position;
+            GPIO_H_REG->GPIOx_ODR &= ~(0x3u << position);
+            GPIO_H_REG->GPIOx_ODR |= config.output_speed << position;
             break;
         }
         default:

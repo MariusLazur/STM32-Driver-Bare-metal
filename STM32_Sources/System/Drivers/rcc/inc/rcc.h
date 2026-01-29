@@ -329,6 +329,7 @@
 #define RCC_APB2ENR_SDIO_EN_Msk                 (0x1UL << RCC_APB2ENR_SDIO_EN_Pos)
 #define RCC_APB2ENR_SPI_1_EN_Pos 12UL
 #define RCC_APB2ENR_SPI_1_EN_Msk               (0x1UL << RCC_APB2ENR_SPI_1_EN_Pos)
+
 #define RCC_APB2ENR_SPI_4_EN_Pos 13UL
 #define RCC_APB2ENR_SPI_4_EN_Msk               (0x1UL << RCC_APB2ENR_SPI_4_EN_Pos)
 
@@ -378,3 +379,6 @@ void vDo_APB2ENR_EnableClockAccessToSYSCFG(uint32 enClockSYScfg);
 
 void vDo_APB1ENR_EnableClockAccessToDMA(uint32 DMA_select);
 void vDo_APB1ENR_DisableClockAccessToDMA(uint32 DMA_select);
+
+void vDo_APB2ENR_DisableClockAccessToSPI1(uint32 enClockSPI1cfg);
+void vDo_APB2ENR_EnableClockAccessToSPI1(uint32 enClockSPI1cfg);

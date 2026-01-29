@@ -28,26 +28,28 @@ set(STARTUP_FILE ${CMAKE_CURRENT_SOURCE_DIR}/System/Startup/startup_stm32f446ret
 
 # Include directories
 set(INCLUDE_DIRS
-    ${CMAKE_CURRENT_SOURCE_DIR}/System/Inc
-    ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/gpio/Inc
-    ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/rcc/Inc
-    ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/pwr/Inc
-    ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/uart/Inc
-    ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/Timers/Inc
-    ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/dma/Inc
-    ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/irq/Inc
+        ${CMAKE_CURRENT_SOURCE_DIR}/System/Inc
+        ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/gpio/Inc
+        ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/rcc/Inc
+        ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/pwr/Inc
+        ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/uart/Inc
+        ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/Timers/Inc
+        ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/dma/Inc
+        ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/irq/Inc
+        ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/spi/Inc
 )
 
 # Source files
 file(GLOB_RECURSE SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/System/Src/*.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/gpio/Src/*.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/rcc/Src/*.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/pwr/Src/*.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/uart/Src/*.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/Timers/Src/*.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/dma/Src/*.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/irq/Src/*.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/System/Src/*.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/gpio/Src/*.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/rcc/Src/*.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/pwr/Src/*.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/uart/Src/*.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/Timers/Src/*.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/dma/Src/*.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/irq/Src/*.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/System/Drivers/spi/Src/*.c  # TODO: Complete SPI driver later
 )
 
 # Executable

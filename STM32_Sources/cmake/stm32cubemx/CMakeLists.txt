@@ -21,16 +21,18 @@ target_include_directories(stm32cubemx INTERFACE
     ../../System/Drivers/rcc/Inc
     ../../System/Drivers/Timers/Inc
     ../../System/Drivers/uart/Inc
+	../../System/Drivers/spi/Inc
     ../../System/Inc
 )
 
 target_sources(stm32cubemx INTERFACE
-   ../../System/Drivers/gpio/Src/gpio.c
-   ../../System/Drivers/pwr/Src/pwr.c
-   ../../System/Drivers/rcc/Src/rcc.c
-   ../../System/Drivers/uart/Src/uart.c
-   ../../System/Src/main.c
-   ../../System/Startup/startup_stm32f446retx.s  
+		../../System/Drivers/gpio/Src/gpio.c
+		../../System/Drivers/pwr/Src/pwr.c
+		../../System/Drivers/rcc/Src/rcc.c
+		../../System/Drivers/uart/Src/uart.c
+		../../System/Drivers/uart/Src/spi.c
+		../../System/Src/main.c
+		../../System/Startup/startup_stm32f446retx.s
 )
 
 target_link_directories(stm32cubemx INTERFACE

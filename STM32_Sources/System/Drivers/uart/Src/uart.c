@@ -53,10 +53,18 @@ void vDoWriteUSART_data(uint8 data){
     USART_2->DR = (data & 0xFF);
 }
 
-int __IO_putchar(int ch)
+int __io_putchar(int ch)
 {
 	vDoWriteUSART_data(ch);
 
 	return ch;
+}
+
+// Trimite un buffer de date prin UART (blocking)
+void uart_send_buffer_blocking(uint8 *data, uint32 length)
+{
+	for(uint32 i = 0; i < length; i++) {
+		vDoWriteUSART_data(data[i]);
+	}
 }
 
